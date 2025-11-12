@@ -5,13 +5,14 @@ import type { GameInsert, GameRow, GameUpdate, PlayerSymbol } from './database.t
 import type { TypedSupabaseClient } from './supabase'
 
 export class GameServiceError extends Error {
-  constructor(
-    message: string,
-    readonly cause?: PostgrestError | Error,
-    readonly code: string = 'SERVICE_ERROR',
-  ) {
+  readonly cause?: PostgrestError | Error
+  readonly code: string
+
+  constructor(message: string, cause?: PostgrestError | Error, code = 'SERVICE_ERROR') {
     super(message)
     this.name = 'GameServiceError'
+    this.cause = cause
+    this.code = code
   }
 }
 
@@ -38,7 +39,7 @@ export async function createGame(
     version: 0,
   }
 
-  const { data, error } = await client.from('games').insert(payload).select().single()
+  const { data, error } = await client.from('games').insert<GameInsert>(payload).select().single()
 
   if (error || !data) {
     throw new GameServiceError('Failed to create game', error ?? undefined, error?.code)
@@ -77,7 +78,7 @@ export async function joinGame(
 
   const { data, error } = await client
     .from('games')
-    .update(update)
+    .update<GameUpdate>(update)
     .eq('id', gameId)
     .is('player_o', null)
     .select()
@@ -161,7 +162,7 @@ export async function updateGameMove(
 
   const { data, error, count } = await client
     .from('games')
-    .update(update)
+    .update<GameUpdate>(update)
     .eq('id', gameId)
     .eq('version', game.version)
     .select()
@@ -206,7 +207,7 @@ export async function resetBoard(
 
   const { data, error } = await client
     .from('games')
-    .update(update)
+    .update<GameUpdate>(update)
     .eq('id', game.id)
     .eq('version', game.version)
     .select()
@@ -239,7 +240,7 @@ export async function resetScores(
 
   const { data, error } = await client
     .from('games')
-    .update(update)
+    .update<GameUpdate>(update)
     .eq('id', game.id)
     .eq('version', game.version)
     .select()

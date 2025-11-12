@@ -1,8 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 import type { Database } from './database.types'
 
-type SupabaseClientType = ReturnType<typeof createClient<Database>>
+type SupabaseClientType = SupabaseClient<any>
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY

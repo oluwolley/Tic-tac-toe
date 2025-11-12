@@ -53,7 +53,6 @@ export interface InviteInsert {
 }
 
 export type InviteUpdate = Partial<InviteInsert>
-
 export type Database = {
   public: {
     Tables: {
@@ -61,13 +60,26 @@ export type Database = {
         Row: GameRow
         Insert: GameInsert
         Update: GameUpdate
+        Relationships: []
       }
       invites: {
         Row: InviteRow
         Insert: InviteInsert
         Update: InviteUpdate
+        Relationships: []
       }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
     }
   }
 }
-

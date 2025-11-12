@@ -105,18 +105,16 @@ export function useGameSubscription(gameId?: string) {
       .on('presence', { event: 'sync' }, () => {
         setSubscriptionState('online')
       })
-      .on('status', (status) => {
-        if (status === 'SUBSCRIBED') {
-          setSubscriptionState('online')
-        } else if (status === 'CLOSED') {
-          setSubscriptionState('error')
-        } else if (status === 'CHANNEL_ERROR') {
-          setSubscriptionState('error')
-        } else {
-          setSubscriptionState('connecting')
-        }
-      })
-      .subscribe()
+
+    channel.subscribe((status) => {
+      if (status === 'SUBSCRIBED') {
+        setSubscriptionState('online')
+      } else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') {
+        setSubscriptionState('error')
+      } else {
+        setSubscriptionState('connecting')
+      }
+    })
 
     channelRef.current = channel
 
