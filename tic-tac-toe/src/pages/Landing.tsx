@@ -49,15 +49,15 @@ export default function Landing() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-4 py-10 md:px-8">
+    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-4 pb-10 pt-[10%] md:px-8">
       <section className="grid gap-10 lg:grid-cols-[1.25fr_1fr]">
         <div className="space-y-6">
           <h1 className="text-4xl font-bold text-gradient sm:text-5xl">
-            Play Tic-Tac-Toe with live Supabase sync.
+            Play Tic-Tac-Toe! The classic X and O game.
           </h1>
           <p className="text-lg text-slate-300">
             Start a match instantly, invite friends with one link, and watch every move update in
-            real time thanks to Supabase Realtime.
+            real time.
           </p>
           <form onSubmit={handleSubmit} className="card space-y-4 p-6">
             <div className="space-y-2">
@@ -89,6 +89,13 @@ export default function Landing() {
           
         </div>
       </section>
+      <footer className="mt-auto border-t border-slate-800 pt-6 text-center text-sm text-slate-400">
+        Made with{' '}
+        <span aria-hidden="true" className="text-red-500">
+          ♥
+        </span>{' '}
+        by Hammed &copy; 2025
+      </footer>
     </main>
   )
 }
