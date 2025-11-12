@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0f172a;
+}
+
+body {
+  @apply bg-background text-slate-100 min-h-screen;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2 font-medium text-slate-900 transition hover:bg-accentMuted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-600/60 bg-slate-800 px-4 py-2 font-medium text-slate-100 transition hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-700/40 bg-surface/95 shadow-xl shadow-slate-950/40 backdrop-blur;
+  }
+
+  .board-grid {
+    @apply grid grid-cols-3 gap-3 p-4 sm:p-6 rounded-2xl bg-slate-900/70 border border-slate-700/40;
+  }
+
+  .board-cell {
+    @apply relative flex aspect-square items-center justify-center rounded-2xl border border-slate-600/40 bg-slate-800/80 text-4xl font-bold uppercase tracking-wide shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent hover:border-accent;
+  }
+
+  .board-cell__value {
+    @apply animate-pop drop-shadow-lg;
+  }
+
+  .board-cell--winning {
+    @apply border-accent bg-gradient-to-br from-accent/20 via-transparent to-accent/10 animate-pulseHighlight;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-slate-900/70 backdrop-blur-sm border border-slate-700/40;
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, #38bdf8, #22d3ee, #a855f7);
+    @apply bg-clip-text text-transparent;
+  }
+}
