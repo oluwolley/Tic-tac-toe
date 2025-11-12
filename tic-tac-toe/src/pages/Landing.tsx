@@ -86,10 +86,7 @@ export default function Landing() {
             <li>3. Supabase keeps both boards in sync in real time.</li>
             <li>4. Reset the board or scores anytime without losing the lobby.</li>
           </ol>
-          <p className="text-sm text-slate-400">
-            Tip: share the link to play on mobile—our UI is built mobile-first with Tailwind CSS and
-            Headless UI components.
-          </p>
+          
         </div>
       </section>
     </main>
